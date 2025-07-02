@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fake Insta Profile Detector</title>
+    <style>
+        body { font-family: Arial; background: #f0f0f0; padding: 30px; }
+        .container { background: #fff; padding: 25px; border-radius: 10px; max-width: 500px; margin: auto; }
+        input, select { width: 100%; padding: 10px; margin-bottom: 10px; }
+        button { padding: 10px 15px; width: 100%; background-color: #4CAF50; color: white; border: none; }
+        .result { font-size: 20px; margin-top: 20px; text-align: center; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Fake Instagram Profile Detector</h2>
+        <form method="post" action="/predict">
+            <label>Profile picture present?</label>
+            <select name="profile_pic"><option value="1">Yes</option><option value="0">No</option></select>
+
+            <label>Digits / Username Length</label>
+            <input type="number" step="0.01" name="nums_length_username" required>
+
+            <label>Words in Full Name</label>
+            <input type="number" name="fullname_words" required>
+
+            <label>Digits / Full Name Length</label>
+            <input type="number" step="0.01" name="nums_length_fullname" required>
+
+            <label>Name same as Username?</label>
+            <select name="name_equals_username"><option value="1">Yes</option><option value="0">No</option></select>
+
+          
+
+            <label>Has External URL?</label>
+            <select name="external_url"><option value="1">Yes</option><option value="0">No</option></select>
+
+            <label>Private Profile?</label>
+            <select name="private"><option value="1">Yes</option><option value="0">No</option></select>
+
+            <label>Number of Posts</label>
+            <input type="number" name="posts" required>
+
+            <label>Number of Followers</label>
+            <input type="number" name="followers" required>
+
+            <label>Number of Followings</label>
+            <input type="number" name="follows" required>
+
+            <button type="submit">Detect</button>
+        </form>
+
+        {% if prediction %}
+        <div class="result"><strong>Result:</strong> {{ prediction }}</div>
+        {% endif %}
+    </div>
+</body>
+</html>
